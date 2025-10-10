@@ -1,0 +1,85 @@
+# ===============================
+# 🌍 Root-level ignores
+# ===============================
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+*.swp
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary & Cache
+tmp/
+temp/
+.cache/
+*.tmp
+*.pid
+*.pid.lock
+
+# ===============================
+# ⚛️ Frontend (React / Vite / Next.js)
+# ===============================
+Frontend/node_modules/
+Frontend/dist/
+Frontend/build/
+Frontend/.next/
+Frontend/.out/
+Frontend/.vite/
+Frontend/.cache/
+Frontend/coverage/
+Frontend/*.tsbuildinfo
+
+# Frontend environment files
+Frontend/.env
+Frontend/.env.local
+Frontend/.env.*.local
+
+# Lock files (optional)
+# Frontend/yarn.lock
+# Frontend/package-lock.json
+# Frontend/pnpm-lock.yaml
+
+# ===============================
+# ⚙️ Backend (Node / Express / API)
+# ===============================
+Backend/node_modules/
+Backend/dist/
+Backend/build/
+Backend/logs/
+Backend/coverage/
+Backend/tmp/
+Backend/.cache/
+Backend/*.tsbuildinfo
+
+# Backend environment files
+Backend/.env
+Backend/.env.local
+Backend/.env.*.local
+
+# Lock files (optional)
+# Backend/yarn.lock
+# Backend/package-lock.json
+# Backend/pnpm-lock.yaml
+
+# ===============================
+# 🧪 Misc
+# ===============================
+*.seed
+*.pid.lock
