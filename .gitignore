@@ -71,7 +71,6 @@ Backend/*.tsbuildinfo
 # Backend environment files
 Backend/.env
 Backend/.env.local
-Backend/.env.*.local
 
 # Lock files (optional)
 # Backend/yarn.lock
