@@ -15,9 +15,11 @@ const app = express();
 database();    // database connection
 
 
+
+app.use(express.json());   // json setup
+
+
 app.use(cors());   // cors setup
-
-
 
 
 app.use(router);  // api routes
