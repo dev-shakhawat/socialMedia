@@ -21,7 +21,8 @@ const userSchema = mongoose.Schema({
         required : true,
         trim : true,
         text : true,
-        unique : true
+        unique : true,
+        lowercase : true
     },
     email : {
         type : String,
@@ -86,7 +87,8 @@ const userSchema = mongoose.Schema({
     gender: {
         type: String, 
         required: true,
-        trim: true
+        trim: true,
+        enum: ['male' , 'female' , 'other']
     },
     isVarified : {
         type : Boolean,
@@ -96,8 +98,7 @@ const userSchema = mongoose.Schema({
         {
             user : {
                 type : mongoose.Schema.Types.ObjectId,
-                ref : 'User' , 
-                required : true,
+                ref : 'User' ,  
                 text : true
             },
             createdAt: {

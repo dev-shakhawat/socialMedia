@@ -3,9 +3,7 @@ const router = express.Router();
 
 
 
-router.get("/" , (req , res) => {
-    res.send("hello")
-})
+router.use("/auth" , require("./allAPI/authAPI") )
 
 
 
