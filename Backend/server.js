@@ -35,7 +35,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 
-app.use(router);  // api routes
+app.use( process.env.BASE_API_URL ,   router);  // api routes
 
 
 

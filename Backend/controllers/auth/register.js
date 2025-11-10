@@ -1,4 +1,4 @@
-const { lengthValidator, userNameValidator, emailValidator, passwordValidator, birthYearValidator } = require("../../helpers/validation");
+const { lengthValidator, userNameValidator, emailValidator, passwordValidator, birthYearValidator, userNameValidatorOnDB } = require("../../helpers/validation");
 const argon2 = require('argon2');
 const userSchema = require("../../models/userModel");
 
@@ -38,6 +38,12 @@ const register = async (req , res) => {
         }
 
 
+        const finalUsername = await userNameValidatorOnDB(userName); 
+        console.log(finalUsername);
+        
+        
+
+
         // email validation
         if(!emailValidator(email)) {
             return res.status(400).json({message : "Email is not valid"});
@@ -45,10 +51,12 @@ const register = async (req , res) => {
 
 
         // check if user already exists
-        const userExists = await userSchema.findOne({email , userName});
+        const userExists = await userSchema.findOne({email});
         if(userExists) {
             return res.status(400).json({message : "User already exists"});
         }
+
+        
 
 
         // birth validation
@@ -86,7 +94,7 @@ const register = async (req , res) => {
         const user = await userSchema.create({
             fName , 
             lName , 
-            userName , 
+            userName: finalUsername , 
             email , 
             password : hashPass , 
             gender , 

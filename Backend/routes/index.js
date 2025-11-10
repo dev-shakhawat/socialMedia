@@ -2,7 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 
-router.use( process.env.BASE_API_URL , require("./api/index"))
+// auth apis
+router.use( "/auth" , require("./api/authAPIs/authAPI"))
+
+
+
 
 
 module.exports = router

@@ -1,3 +1,8 @@
+const { default: mongoose } = require("mongoose");
+const userSchema = require("../models/userModel");
+
+
+
 exports.emailValidator = (email) => {
   if (!email || !email.trim()) return false;
 
@@ -16,6 +21,7 @@ exports.lengthValidator = (value , min , max) => {
 
 exports.userNameValidator = (value) => {
   return value.toLowerCase().match(/^(?!.*[._]{2})(?![._])[a-zA-Z0-9._]{3,30}(?<![._])$/);
+  
 }
 
 
@@ -34,4 +40,32 @@ exports.birthYearValidator = (year) => {
 
   // Must be a 4-digit year and at least 15 years before the current year
   return /^\d{4}$/.test(year) && Number(year) <= minYear;
+};
+
+
+
+
+
+ 
+
+exports.userNameValidatorOnDB = async (username) => {
+
+  let isTaken = true;
+  let finalUsername = username;
+
+  do{
+
+    const user = await userSchema.findOne({ userName : finalUsername });
+
+    if(user) {
+      finalUsername = `${username}${Math.floor(1000 + Math.random() * 900000)}`
+      isTaken = true;
+    }else {
+      isTaken = false;
+    }
+
+  }while(isTaken)
+
+  return finalUsername
+  
 };
