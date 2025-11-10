@@ -1,6 +1,8 @@
 const { lengthValidator, userNameValidator, emailValidator, passwordValidator, birthYearValidator, userNameValidatorOnDB } = require("../../helpers/validation");
 const argon2 = require('argon2');
 const userSchema = require("../../models/userModel");
+const { generateToken } = require("../../helpers/token"); 
+const mailer = require("../../helpers/mailer");
 
 
 
@@ -102,6 +104,19 @@ const register = async (req , res) => {
             bMonth , 
             bYear
         })
+
+
+
+        if(!user) return res.status(400).json({message : "Error while creating user"}); 
+
+        // generate token
+        const token = await generateToken( user._id.toString() , "isVarified" , true  , "10m" );  
+        
+
+        const url = `${process.env.FRONTEND_URL}/auth/verify/${token}`
+
+        await mailer(email , "Verify your account" , `Click <a href = "${url}">here</a> to verify your email` )
+        
 
         return res
             .status(201)
