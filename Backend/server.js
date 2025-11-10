@@ -9,6 +9,11 @@ const router = require("./routes/index");
 const database = require("./configurations/dbConfig");
 const app = express();
 
+// swagger 
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerOptions = require("./configurations/swaggerConfig");
+
 
 
 
@@ -20,6 +25,14 @@ app.use(express.json());   // json setup
 
 
 app.use(cors());   // cors setup
+
+
+
+// swagger config
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+
 
 
 app.use(router);  // api routes
